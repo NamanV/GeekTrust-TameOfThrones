@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b44cc90e-5d82-49e6-82cb-892100e4fe06" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tameofthrones/utility/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tameofthrones/interfaces/Kingdom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/testcase-4.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tameofthrones/error/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tameofthrones/error/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tameofthrones/model/KingdomCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tameofthrones/model/KingdomCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tameofthrones/interfaces/Logger.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tameofthrones/interfaces/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tameofthrones/interfaces/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tameofthrones/model/Kingdom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tameofthrones/model/KingdomInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tameofthrones/model/KingdomCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tameofthrones/model/KingdomImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tameofthrones/model/SeasarCipherSecretMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tameofthrones/model/SeasarCipherSecretMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tameofthrones/test/GeekTrust.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tameofthrones/test/GeekTrust.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tameofthrones/utility/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tameofthrones/utility/Constants.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +25,8 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -105,11 +108,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/tameofthrones/test/GeekTrust.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/tameofthrones/model/SeasarCipherSecretMessage.java</url>
           <line>21</line>

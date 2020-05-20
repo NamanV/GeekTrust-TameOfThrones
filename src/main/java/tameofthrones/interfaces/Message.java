@@ -1,10 +1,10 @@
 package tameofthrones.interfaces;
 
-import tameofthrones.model.Kingdom;
+import tameofthrones.model.KingdomInformation;
 
 public interface Message{
 
     public boolean isKingdomAnAlly();
 
-    public Kingdom getKingdom();
+    public KingdomInformation getKingdom();
 }

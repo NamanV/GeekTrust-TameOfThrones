@@ -10,9 +10,9 @@ public class SeasarCipherSecretMessage implements Message {
     private char[] cipherKeys = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
     private int CHAR_A = 'A';
     private String message;
-    private Kingdom toKingdom;
+    private KingdomInformation toKingdom;
 
-    public SeasarCipherSecretMessage(String message, Kingdom toKingdom) {
+    public SeasarCipherSecretMessage(String message, KingdomInformation toKingdom) {
         this.message = message;
         this.toKingdom = toKingdom;
     }
@@ -22,6 +22,9 @@ public class SeasarCipherSecretMessage implements Message {
         Map<Character, Integer> emblemCharCount = new HashMap<>();
         for (char ch : toKingdom.getEmblem().toCharArray()) {
             int cipherCharIndex = (ch +toKingdom.getCipherKey() - CHAR_A)%cipherKeys.length;
+            if(cipherCharIndex >= cipherKeys.length){
+                continue;
+            }
             emblemCharCount.put(cipherKeys[cipherCharIndex], emblemCharCount.getOrDefault(cipherKeys[cipherCharIndex], 0) + 1);
         }
 
@@ -44,7 +47,7 @@ public class SeasarCipherSecretMessage implements Message {
     }
 
     @Override
-    public Kingdom getKingdom() {
+    public KingdomInformation getKingdom() {
         return toKingdom;
     }
 

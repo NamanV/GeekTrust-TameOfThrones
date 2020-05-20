@@ -2,11 +2,11 @@ package tameofthrones.test;
 
 import tameofthrones.error.Error;
 import tameofthrones.error.TameOfThronesException;
-import tameofthrones.model.KingdomCreator;
-import tameofthrones.model.Kingdom;
+import tameofthrones.interfaces.Kingdom;
 import tameofthrones.interfaces.Message;
+import tameofthrones.model.KingdomImpl;
+import tameofthrones.model.KingdomInformation;
 import tameofthrones.model.SeasarCipherSecretMessage;
-import tameofthrones.utility.Constants;
 import tameofthrones.utility.EnumUtility;
 import tameofthrones.utility.Logger;
 
@@ -17,29 +17,31 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GeekTrust {
 
     public static void main(String[] args) {
+        //runThroughIDE("/testcase-1.txt");
+        //runThroughIDE("/testcase-2.txt");
+        //runThroughIDE("/testcase-3.txt");
+        //runThroughIDE("/testcase-4.txt");
+        runThroughTerminal(args);
+    }
 
-
-        List<Message> secretMessages = null;
+    private static void runThroughTerminal(String[] args) {
         try {
             if (args.length <= 0) {
                 throw new TameOfThronesException(Error.INVALID_ARGUMENTS);
             }
-            String filePath = args[0];
 
-            secretMessages = secretMessage(processInputFile(filePath));
-            KingdomCreator kingdom = new KingdomCreator(Kingdom.SPACE);
-            kingdom.initSecretMessages(secretMessages);
-            List<Kingdom> allies = kingdom.getAllies();
-            if (allies.isEmpty()) {
+            Kingdom kingdom = new KingdomImpl(KingdomInformation.SPACE);
+            kingdom.initSecretMessages(secretMessages(processInputFile(args[0])));
+            if (!kingdom.isRuler()) {
                 throw new TameOfThronesException(Error.NO_ALLIES);
             }
-            kingdom.printAllies(allies);
         } catch (IOException | URISyntaxException |
                 TameOfThronesException e) {
             Logger.printLog(e.getMessage());
@@ -47,23 +49,24 @@ public class GeekTrust {
 
     }
 
-    private void runThroughIDE() {
-        String filePath = "/testcase-1.txt";
 
-        List<Message> secretMessages = null;
-        try {
-            secretMessages = secretMessage(processInputFileToInstructions(filePath));
-            KingdomCreator kingdom = new KingdomCreator(Kingdom.SPACE);
-            kingdom.initSecretMessages(secretMessages);
-            List<Kingdom> allies = kingdom.getAllies();
-            if (allies.isEmpty()) {
-                throw new TameOfThronesException(Error.NO_ALLIES);
+    public static List<Message> secretMessages(List<String> messages) throws TameOfThronesException {
+        List<Message> secretMessages = new ArrayList<>();
+        for (String message : messages) {
+            String[] breakup = message.split(" ");
+            KingdomInformation kingdom = EnumUtility.loadUpperCase(breakup[0], KingdomInformation.class, KingdomInformation.NONE);
+
+            if (kingdom.equals(KingdomInformation.NONE)) {
+                throw new TameOfThronesException(Error.KINGDOM_NOT_VALID);
             }
-            kingdom.printAllies(allies);
-        } catch (IOException |
-                TameOfThronesException e) {
-            Logger.printLog(e.getMessage());
+
+            List<String> messageList = Arrays.asList(breakup).subList(0, breakup.length);
+            String fullMessage = messageList.stream()
+                    .collect(Collectors.joining(" "));
+            secretMessages.add(new SeasarCipherSecretMessage(fullMessage, kingdom));
         }
+
+        return secretMessages;
     }
 
     private static List<String> processInputFileToInstructions(String fileName) throws IOException {
@@ -82,21 +85,17 @@ public class GeekTrust {
         return Files.readAllLines(path, StandardCharsets.UTF_8);
     }
 
+    private static void runThroughIDE(String filePath) {
 
-    private static List<Message> secretMessage(List<String> messages) throws TameOfThronesException {
-        List<Message> list = new ArrayList<>();
-        for (String message : messages) {
-            String[] breakup = message.split(" ");
-            if (breakup.length > Constants.MAXIMUM_INPUT_SIZE) {
-                throw new TameOfThronesException(Error.INVALID_ARGUMENTS);
+        try {
+            KingdomImpl kingdom = new KingdomImpl(KingdomInformation.SPACE);
+            kingdom.initSecretMessages(secretMessages(processInputFileToInstructions(filePath)));
+            if (!kingdom.isRuler()) {
+                throw new TameOfThronesException(Error.NO_ALLIES);
             }
-            Kingdom kingdom = EnumUtility.loadUpperCase(breakup[0], Kingdom.class, Kingdom.NONE);
-            if (kingdom.equals(Kingdom.NONE)) {
-                throw new TameOfThronesException(Error.KINGDOM_NOT_VALID);
-            }
-            list.add(new SeasarCipherSecretMessage(breakup[1], kingdom));
+        } catch (IOException |
+                TameOfThronesException e) {
+            Logger.printLog(e.getMessage());
         }
-
-        return list;
     }
 }

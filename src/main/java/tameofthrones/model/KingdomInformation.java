@@ -1,11 +1,11 @@
 package tameofthrones.model;
 
-public enum Kingdom {
+public enum KingdomInformation {
     SPACE("GORILLA"), AIR("OWL"), ICE("MAMMOTH"),
     WATER("OCTOPUS"), FIRE("DRAGON"), LAND("PANDA"),NONE("NOT_VALID");
 
     private String emblem;
-    Kingdom(String emblem){
+    KingdomInformation(String emblem){
         this.emblem = emblem;
     }
 
