@@ -6,7 +6,7 @@
 
     <groupId>com.dxtr</groupId>
     <artifactId>tame-of-thrones-dxtr</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <name>Tame of Thrones</name>
     <description>King Shan and his schemes and adventures</description>
 
@@ -29,7 +29,7 @@
                     <manifest>
                         <addClasspath>true</addClasspath>
                         <!-- This is main class of your program which will be executed-->
-                        <mainClass>{{tameofthrones.test.GeekTrust})</mainClass>
+                        <mainClass>tameofthrones.test.GeekTrust</mainClass>
                     </manifest>
                 </archive>
             </configuration>

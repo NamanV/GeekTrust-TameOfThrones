@@ -7,6 +7,8 @@ import java.util.Map;
 
 public class SeasarCipherSecretMessage implements Message {
 
+    private char[] cipherKeys = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+    private int CHAR_A = 'A';
     private String message;
     private Kingdom toKingdom;
 
@@ -19,8 +21,8 @@ public class SeasarCipherSecretMessage implements Message {
     public boolean isKingdomAnAlly() {
         Map<Character, Integer> emblemCharCount = new HashMap<>();
         for (char ch : toKingdom.getEmblem().toCharArray()) {
-            char cipherChar = (char)(ch +toKingdom.getCipherKey());
-            emblemCharCount.put(cipherChar, emblemCharCount.getOrDefault(cipherChar, 0) + 1);
+            int cipherCharIndex = (ch +toKingdom.getCipherKey() - CHAR_A)%cipherKeys.length;
+            emblemCharCount.put(cipherKeys[cipherCharIndex], emblemCharCount.getOrDefault(cipherKeys[cipherCharIndex], 0) + 1);
         }
 
         Map<Character, Integer> messageCharCount = new HashMap<>();
